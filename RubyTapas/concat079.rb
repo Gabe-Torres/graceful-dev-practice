@@ -15,11 +15,25 @@ class Shopper
     @list = list
   end
 
-  attr_reader :list
+  attr_accessor :list
 end
 
-s = Shopper.new(["bread", "milk", "granola"])
-s.list += ["swiss", "brie", "cheddar"]
-s.list #=> undefined method `list=' for #<Shopper:0x00000001021d94f0 @list=["bread", "milk", "granola"]> (NoMethodError)
+# s = Shopper.new(["bread", "milk", "granola"])
+# s.list += ["swiss", "brie", "cheddar"]
+# s.list #=> undefined method `list=' for #<Shopper:0x00000001021d94f0 @list=["bread", "milk", "granola"]> (NoMethodError)
 
-# += is equal to something like (s.list + ["swiss", "brie", "cheddar"])
+# # += is equal to something like (s.list + ["swiss", "brie", "cheddar"])
+
+shared_list = ["bread", "milk", "granola"]
+stacey = Shopper.new(shared_list)
+avdi = Shopper.new(shared_list)
+# stacey.list += ["swiss", "brie", "cheddar"]
+stacey.list.concat(["swiss", "brie", "cheddar"])
+
+
+# avdi doesn't get the new contents because plus equals += assigns a new array to the attribute
+# so really this doesn't add items to the shared list. its replacing it with a new one.
+puts stacey.list
+puts
+puts
+puts avdi.list
