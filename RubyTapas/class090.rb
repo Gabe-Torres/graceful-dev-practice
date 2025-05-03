@@ -1,3 +1,4 @@
+#  singleton method syntax 
 class C
   # class level method - .self
   # self is the object currently being defined, in ruby everything is an object.
@@ -6,14 +7,29 @@ class C
   #   puts "who needs instances, I'm a class method!"
   # end
 
-  # puts "Hello from #{self}"
+  # # puts "Hello from #{self}"
 
-  #  you can also explicitly call the class instead of self. not used because it is duplication and one more thing to update if the class name is ever changed.
-  def C.bar
-    puts "I'm a class method too!"
+  # #  you can also explicitly call the class instead of self. not used because it is duplication and one more thing to update if the class name is ever changed.
+  # def C.bar
+  #   puts "I'm a class method too!"
+  # end
+
+  class << self # * class self syntax opens a window into the class object singleton class
+      def baz 
+        puts "just another class method!"
+      end
+
+      def foo
+        puts "who needs instances, I'm a class method!"
+      end
+    
+      def bar
+        puts "I'm a class method too!"
+      end
   end
 end
 
 C.foo
 C.bar
-#>> who needs instances, I'm a class method!
+C.baz
+# >> who needs instances, I'm a class method!
