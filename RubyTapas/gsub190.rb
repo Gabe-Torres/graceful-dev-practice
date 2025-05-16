@@ -21,8 +21,22 @@ LEXICON = {
 "UFO" => "MOOSE"
 }
 
+
+# This method can be more efficient
+# 
 # sanitized = TEXT 
 # LEXICON.each do |term, alt|
 #   sanitized = sanitized.gsub(term, alt)
 # end
 # puts sanitized
+# 
+#
+# combine keys of lexicon 
+terms = LEXICON.keys.map{|k| Regexp.escape(k)}.join("|")
+
+#  convert joined string to a regular expression object
+pattern = Regexp.new(terms)
+
+#  handle replacing matched values, gsub can accept hashes too, for replacements
+sanitized = TEXT.gsub(pattern, LEXICON)
+puts sanitized
