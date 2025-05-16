@@ -21,3 +21,8 @@ LEXICON = {
 "UFO" => "MOOSE"
 }
 
+# sanitized = TEXT 
+# LEXICON.each do |term, alt|
+#   sanitized = sanitized.gsub(term, alt)
+# end
+# puts sanitized
